@@ -4,10 +4,42 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <title>Converter App</title>
   </head>
-  <body class="flex flex-col justify-center text-center">
-    <div class="font-bold h-10 text-5xl">Hello World</div>
-    <script type="module" src="/src/main.js"></script>
-  </body>
+  <body class="min-h-screen bg-gray-100 flex flex-col items-center p-4">
+    <header class="max-sm:bg-blue-400 w-full max-w-md mb-8 p-4 bg-blue-600 text-white rounded-xl shadow-lg">
+        <h1 class="text-2xl font-bold text-center">Length Converter</h1>
+    </header>
+
+    <main class="w-full max-w-md bg-white rounded-xl drop-shadow-lg p-6 space-y-6">
+        <!-- Meter Conversion -->
+        <div class="space-y-2">
+            <label class="block  text-sm font-medium text-gray-700">Meters (m)</label>
+            <div class="flex gap-2 max-sm:flex-col max-sm:space-y-3">
+                <input type="number" 
+                       class="flex-1 p-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                       placeholder="Enter meters">
+                <button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                    Convert
+                </button>
+            </div>
+        </div>
+
+        <!-- Kilometer Conversion -->
+        <div class="space-y-2">
+            <label class="block text-sm font-medium text-gray-700">Kilometers (km)</label>
+            <div class="flex gap-2 max-sm:flex-col max-sm:space-y-3">
+                <input type="number" 
+                       class="flex-1 p-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                       placeholder="Enter kilometers">
+                <button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                    Convert
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Conversion would happen between these two units -->
+</body>
+  <script type="module" src="/src/main.js"></script>
 </html>
