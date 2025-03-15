@@ -1,46 +1,107 @@
 import './style.css';
 
 const dd = document.querySelectorAll(".d_down");
-const ddbutton1 = dd[0];
-const ddmenu1 = dd[1];
-const ddbutton2 = dd[2];
-const ddmenu2 = dd[3];
+const fromButton = dd[0];
+const fromMenu = dd[1];
+const toButton = dd[2];
+const toMenu = dd[3];
 
 // Toggle dropdown menus on button click
-ddbutton1.addEventListener('click', ()=> {
-  ddmenu1.classList.toggle('invisible');
-  ddmenu2.classList.add('invisible');
+fromButton.addEventListener('click', ()=> {
+  fromMenu.classList.toggle('invisible');
+  toMenu.classList.add('invisible');
 });
 
-ddbutton2.addEventListener('click', ()=> {
-    ddmenu2.classList.toggle('invisible');
-  ddmenu1.classList.add('invisible');
+toButton.addEventListener('click', ()=> {
+    toMenu.classList.toggle('invisible');
+  fromMenu.classList.add('invisible');
 });
 
 document.addEventListener('click', (event) => {
-  if (!ddmenu1.contains(event.target) && !ddbutton1.contains(event.target)) {
-    ddmenu1.classList.add('invisible');
+  if (!fromMenu.contains(event.target) && !fromButton.contains(event.target)) {
+    fromMenu.classList.add('invisible');
   }
-  if (!ddmenu2.contains(event.target) && !ddbutton2.contains(event.target)) {
-    ddmenu2.classList.add('invisible');
-  }
-});
-
-ddmenu1.addEventListener('click', (event) => {
-  if (event.target.tagName === 'SPAN') { 
-    ddmenu1.classList.add('invisible');
+  if (!toMenu.contains(event.target) && !toButton.contains(event.target)) {
+    toMenu.classList.add('invisible');
   }
 });
 
-ddmenu2.addEventListener('click', (event) => {
-  if (event.target.tagName === 'SPAN') { // Check if a menu option is clicked
-    ddmenu2.classList.add('invisible');
-  }
-});
 
 document.addEventListener('keydown', (event) => {
   if (event.key === 'Escape') {
-    ddmenu1.classList.add('invisible');
-    ddmenu2.classList.add('invisible');
+    fromMenu.classList.add('invisible');
+    toMenu.classList.add('invisible');
   }
+});
+
+// Converter algorithm
+
+const defineUnits = {
+  'meter(m)': 1,
+  'kilometer(km)': 1000,
+  'centimeter(cm)': 0.01,
+  'millimeter(mm)': 0.001
+};
+
+
+let fromUnit = 'meter(m)'; // default
+let toUnit = 'kilometer(km)'; // default
+// Update selected units from dropdowns
+fromMenu.querySelectorAll('span').forEach(option => {
+  option.addEventListener('click', (event) => {
+    if (event.target.tagName === 'SPAN') { // Check if a menu option is clicked
+      fromMenu.classList.add('invisible');
+    }
+    fromUnit = option.textContent.trim();
+    fromButton.querySelector('span').textContent = fromUnit;
+  });
+});
+
+toMenu.querySelectorAll('span').forEach(option => {
+  option.addEventListener('click', (event) => {
+    if (event.target.tagName === 'SPAN') { // Check if a menu option is clicked
+      toMenu.classList.add('invisible');
+    }
+    toUnit = option.textContent.trim();
+    toButton.querySelector('span').textContent = toUnit;
+  });
+});
+
+
+function convertFrom(){
+  let fromValue=parseFloat(document.querySelector("#input1").value);
+ let fromUnit=fromButton.querySelector('span').textContent;
+ let toUnit=toButton.querySelector('span').textContent;
+
+  if (isNaN(fromValue)) {
+    document.getElementById("input2").value = "";
+    return;
+}
+
+let valueInMeters = fromValue * defineUnits[fromUnit];
+let convertedValue = valueInMeters / defineUnits[toUnit];
+document.getElementById("input2").value = convertedValue;
+}
+
+
+function convertTo() {
+    let toValue = parseFloat(document.getElementById("input2").value);
+    let fromUnit=fromButton.querySelector('span').textContent;
+    let toUnit=toButton.querySelector('span').textContent;
+
+    if (isNaN(toValue)) {
+        document.getElementById("fromValue").value = "";
+        return;
+    }
+    let valueInMeters = toValue * defineUnits[toUnit];
+    let convertedValue = valueInMeters / defineUnits[fromUnit];
+    document.getElementById("input1").value = convertedValue;
+}
+
+document.getElementById("input1").addEventListener("input", convertFrom);
+document.getElementById("input2").addEventListener("input", convertTo);
+
+document.addEventListener('click',()=>{
+convertFrom();
+convertTo();
 });
