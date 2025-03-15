@@ -9,7 +9,7 @@ Here is a *live server*: https://rainbow-malasada-7f29da.netlify.app/
 ## 🚀 Features
 - Convert between meters, feet, inches, and more
 - Simple and clean UI using Tailwind CSS
-- Responsive design for all devices
+- Real-time conversion
 
 ## What I learned:
 - I learnt how to use **TailwindCSS** properly to create responsive designs.
