@@ -5,6 +5,7 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Converter App</title>
+    <link rel="stylesheet" href="./src/second.css">
   </head>
   <body class="min-h-screen bg-gray-100 flex flex-col items-center p-4">
     <header class="max-sm:bg-blue-400 w-full max-w-md mb-8 p-4 bg-blue-600 text-white rounded-xl shadow-lg">
@@ -13,8 +14,13 @@
 
     <main class="w-full max-w-md bg-white rounded-xl drop-shadow-lg p-6 space-y-6">
         <!-- Meter Conversion -->
-        <div class="space-y-2">
-            <label class="block  text-sm font-medium text-gray-700">Meters (m)</label>
+        <div class="space-y-2 relative">
+            <button class="d_down p-4 text-[15px] font-medium text-gray-700 cursor-pointer flex hover:bg-[rgb(247,247,247)] h-5 w-25 items-center justify-evenly">meter(m)<img src="/src/assets/dropdown.svg" width="10px" height="10px" />
+            </button>
+                <!--Dropdown1-->
+                <div class="d_down invisible absolute left-10 top-[1.5rem] gap-1 flex flex-col w-40 text-center bg-white border-[1px] border-gray-500 rounded">
+                    <span class="hover:bg-gray-400 cursor-pointer">meter(m)</span><span class="hover:bg-gray-400 cursor-pointer">kilometer(km)</span><span class="hover:bg-gray-400 cursor-pointer">centimeter(cm)</span><span class="hover:bg-gray-400 cursor-pointer">millimeter(mm)</span>
+                </div>
             <div class="flex gap-2 max-sm:flex-col max-sm:space-y-3">
                 <input type="number" 
                        class="flex-1 p-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
@@ -27,11 +33,15 @@
 
         <!-- Kilometer Conversion -->
         <div class="space-y-2">
-            <label class="block text-sm font-medium text-gray-700">Kilometers (km)</label>
+            <button class="d_down p-4 text-[15px] text-sm font-medium text-gray-700 cursor-pointer flex hover:bg-[rgb(247,247,247)] h-5 w-32 items-center justify-evenly">kilometer(km)<img src="/src/assets/dropdown.svg" width="10px" height="10px" />
+            </button>
+            <div class="d_down invisible absolute left-16 bottom-[0.5rem] gap-1 flex flex-col w-40 text-center bg-white border-[1px] border-gray-500 rounded">
+                <span class="hover:bg-gray-400">meter(m)</span><span class="hover:bg-gray-400">kilometer(km)</span><span class="hover:bg-gray-400">centimeter(cm)</span><span class="hover:bg-gray-400">millimeter(mm)</span>
+            </div>
             <div class="flex gap-2 max-sm:flex-col max-sm:space-y-3">
                 <input type="number" 
                        class="flex-1 p-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                       placeholder="Enter kilometers">
+                       placeholder="Enter meters">
                 <button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
                     Convert
                 </button>
@@ -39,7 +49,6 @@
         </div>
     </main>
 
-    <!-- Conversion would happen between these two units -->
 </body>
   <script type="module" src="/src/main.js"></script>
 </html>
